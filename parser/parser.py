@@ -196,7 +196,7 @@ def printActionTree(program):
     for action in program.actions:
         print(f"Action: {action.action}, Parameters: {action.parameters}")
 
-def actionTreeToFile(program, tree_name):
+def actionTreeToFile(program:Sequence, tree_name:str):
     with open(f"{tree_name}.xml", "a") as f:
         f.write(f'<root main_tree_to_execute = "{tree_name}"> \n')
         f.write(f'\t <BehaviorTree ID="{tree_name}">\n')
@@ -208,8 +208,8 @@ def actionTreeToFile(program, tree_name):
                 f.write(f' {name}="{value}" ')
             f.write(f'/>\n')
         
-        f.write(f'\t\t </Sequence>')
-        f.write(f'\t </BehaviorTree>')
+        f.write(f'\t\t </Sequence> \n')
+        f.write(f'\t </BehaviorTree> \n')
         f.write(f'</root> \n')
 
     return
