@@ -1,3 +1,4 @@
+from os import name
 import sys
 #line by line input
 #parse it.
@@ -195,7 +196,24 @@ def printActionTree(program):
     for action in program.actions:
         print(f"Action: {action.action}, Parameters: {action.parameters}")
 
+def actionTreeToFile(program, tree_name):
+    with open(f"{tree_name}.xml", "a") as f:
+        f.write(f'<root main_tree_to_execute = "{tree_name}"> \n')
+        f.write(f'\t <BehaviorTree ID="{tree_name}">\n')
+        f.write(f'\t\t <Sequence name="root_seq">\n')
+        n = 0
+        for action in program.actions:
+            f.write(f'\t\t\t <Action ID="{n}"')
+            for name, value in action.parameters.items():
+                f.write(f' {name}="{value}" ')
+            f.write(f'/>\n')
+        
+        f.write(f'\t\t </Sequence>')
+        f.write(f'\t </BehaviorTree>')
+        f.write(f'</root> \n')
 
+    return
+        
 
 
 ###############################################################
@@ -204,6 +222,8 @@ if len(sys.argv) < 2:
     print("ERROR: Missing 1 required argument: <filename>")
     exit()
 filename = sys.argv[1] 
+tree_name = sys.argv[2]
+
 f = open(filename, "r")
 text = f.read()
 print(text)
@@ -221,4 +241,5 @@ if program == False: print('Failed to parse program')
 for action in program.actions:
     print(f"Action: {action.action}, Parameters: {action.parameters}")
 
+actionTreeToFile(program, tree_name)
     
