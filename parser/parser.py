@@ -203,7 +203,7 @@ def actionTreeToFile(program:Sequence, tree_name:str):
         f.write(f'\t\t <Sequence name="root_seq">\n')
         n = 0
         for action in program.actions:
-            f.write(f'\t\t\t <Action ID="{n}"')
+            f.write(f'\t\t\t <Action  ID="{action.action}"')
             for name, value in action.parameters.items():
                 f.write(f' {name}="{value}" ')
             f.write(f'/>\n')
