@@ -34,4 +34,4 @@ python model/parse_s2s_att.py --data_dir=data --train_dir=checkpoint --decode=Tr
 
 The default parameters provided give test accuracy of 83.9% on the geo-queries dataset. However, this can vary slightly on different machines.
 
-
+To run the model for the Robotics dataset curated by Jake Imyak, Cedric McGuire, Parth Parekh​which has 1000 data entries in the train set and 250 entries in the test set.
