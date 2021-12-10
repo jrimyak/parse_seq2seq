@@ -24,7 +24,7 @@ import math
 import numpy as np
 from six.moves import xrange  # pylint: disable=redefined-builtin
 import tensorflow as tf
-
+import parser_tree.parser as p
 import data_utils
 import seq2seq_model
 from accuracy import *
@@ -472,6 +472,9 @@ def decode():
         outputs = outputs[:outputs.index(data_utils.EOS_ID)]
       # Print out logical form corresponding to outputs.
       print(" ".join([tf.compat.as_str(rev_to_vocab[output]) for output in outputs]))
+      parse_tree = p.getActionTree(" ".join([tf.compat.as_str(rev_to_vocab[output]) for output in outputs]))
+      p.printActionTree(parse_tree)
+      p.actionTreeToFile(parse_tree, 'test')
       print("> ", end="")
       sys.stdout.flush()
       sentence = sys.stdin.readline()

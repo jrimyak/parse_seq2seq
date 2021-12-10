@@ -218,28 +218,30 @@ def actionTreeToFile(program:Sequence, tree_name:str):
 
 ###############################################################
 #Running Code
-if len(sys.argv) < 2:
-    print("ERROR: Missing 1 required argument: <filename>")
-    exit()
-filename = sys.argv[1] 
-tree_name = sys.argv[2]
-
-f = open(filename, "r")
-text = f.read()
-print(text)
-
-
-#Tokenizer stuff
-Singleton(text)
-program = Sequence()
-program.parseSequence()
-
-#Check to make sure no errors (if any errors, this will be true)
-if program == False: print('Failed to parse program') 
-
-#Print out actions
-for action in program.actions:
-    print(f"Action: {action.action}, Parameters: {action.parameters}")
-
-actionTreeToFile(program, tree_name)
+if __name__ == '__main__':
     
+    if len(sys.argv) < 2:
+        print("ERROR: Missing 1 required argument: <filename>")
+        exit()
+    filename = sys.argv[1] 
+    tree_name = sys.argv[2]
+
+    f = open(filename, "r")
+    text = f.read()
+    print(text)
+
+
+    #Tokenizer stuff
+    Singleton(text)
+    program = Sequence()
+    program.parseSequence()
+
+    #Check to make sure no errors (if any errors, this will be true)
+    if program == False: print('Failed to parse program') 
+
+    #Print out actions
+    for action in program.actions:
+        print(f"Action: {action.action}, Parameters: {action.parameters}")
+
+    actionTreeToFile(program, tree_name)
+        
